@@ -1,8 +1,8 @@
 import types from '../constants/actionTypes';
 
 const defaultState = {
-    enabled: true,
-    joker: true
+    enabled: false,
+    joker: false
 };
 
 module.exports = (state = defaultState, action) => {

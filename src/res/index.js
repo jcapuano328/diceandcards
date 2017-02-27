@@ -1,7 +1,7 @@
 import { Icons } from 'react-native-nub';
 
 module.exports = {
-	"logo": require('./logo.png'),			
+	"logo": require('./menu.png'),			
 	"info": Icons['info-dark'],	
 	"back": Icons['chevron-left-dark'],
 	"config": require('./gear-dark.png'),
@@ -70,5 +70,6 @@ module.exports = {
 	"draw": require('./draw-dark.png'),
 	"shuffle": require('./shuffle-dark.png'),
 	"cardtable": require('./table1.jpg'),
-	"dicetable": require('./table4.jpg')
+	"dicetable": require('./table4.jpg'),
+	"diceroll": require('./dicecup.png')
 };

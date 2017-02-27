@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
+import {Style} from 'react-native-nub';
 import DiceView from './diceView';
 import CardsView from './cardsView';
 import {load} from '../actions/config';
@@ -11,7 +12,7 @@ var MainView = React.createClass({
     },        
     render() {
         return (
-            <View style={{flex: 1, marginTop: 50}}>
+            <View style={{flex: 1, marginTop: Style.Scaling.scale(44)}}>
                 {this.renderDice()}
                 {this.renderCards()}
             </View>
