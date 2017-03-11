@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { View, Image, TouchableOpacity } from 'react-native';
 import IconButton from '../components/iconButton';
 import Cards from '../services/cards';
@@ -12,7 +13,7 @@ var CardsView = React.createClass({
             width: 0,
             height: 0,
             viewHeight: 100,                  
-            cards: Cards.shuffle(),
+            cards: null,//Cards.shuffle(this.props.includejoker),
             card: null
         };
     },    
@@ -27,7 +28,7 @@ var CardsView = React.createClass({
         }
     },    
     onDeckShuffle() {        
-        this.setState({cards: Cards.shuffle(), card: null});
+        this.setState({cards: Cards.shuffle(this.props.includejoker), card: null});
     },
     onCardDraw() {
         if (this.state.cards.length > 0) {
@@ -76,4 +77,10 @@ var CardsView = React.createClass({
     }
 });
 
-export default CardsView;
+const mapStateToProps = (state) => ({    
+    includejoker: state.cards.joker
+});
+
+module.exports = connect(
+  mapStateToProps
+)(CardsView);
