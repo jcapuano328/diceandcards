@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import {Style} from 'react-native-nub';
+import Style from '../services/style';
 import Dice from '../services/dice';
 import Die6 from './die6Sided';
 import Die10 from './die10Sided';

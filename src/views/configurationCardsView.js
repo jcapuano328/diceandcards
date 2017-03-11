@@ -1,40 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Switch } from 'react-native';
-import {Style} from 'react-native-nub';
+import { Container, Content, Body, ListItem, Text, CheckBox } from 'native-base';
+import Style from '../services/style';
 import {setEnabled,setJoker} from '../actions/cards';
-import {save} from '../actions/config';
 
 var ConfigurationCardsView = React.createClass({
     onEnabledChanged(v) {
-        this.props.setEnabled(v);
-        this.props.save().done();        
+        this.props.setEnabled(v);        
     },
     onJokerChanged(v) {
-        this.props.setJoker(v);
-        this.props.save().done();
+        this.props.setJoker(v);        
     },    
     render() {
         return (
-            <View style={{flex: 1}}>
-                <Text style={{fontSize: 18,fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Cards</Text>
-                <View style={{flexDirection:'row',alignItems: 'flex-start', marginLeft: 20}}>
-                    <View style={{flex:1, justifyContent: 'center'}}>
+            <Container>
+                <Content>            
+                    <Text style={{fontSize: Style.Font.large(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Cards</Text>
+                    <ListItem>
+                        <CheckBox checked={this.props.enabled} onPress={() => this.onEnabledChanged(!this.props.enabled)} />
                         <Text style={{fontSize: Style.Font.medium()}}>Enabled</Text>
-                    </View>
-                    <View style={{flex:2, alignItems:'flex-start'}}>
-                        <Switch value={this.props.enabled} onValueChange={this.onEnabledChanged} />
-                    </View>
-                </View>                
-                <View style={{flexDirection:'row',alignItems: 'flex-start', marginLeft: 20}}>
-                    <View style={{flex:1, justifyContent: 'center'}}>
+                    </ListItem>
+                    <ListItem>
+                        <CheckBox checked={this.props.joker} onPress={() => this.onJokerChanged(!this.props.joker)} />
                         <Text style={{fontSize: Style.Font.medium()}}>Include Joker</Text>
-                    </View>
-                    <View style={{flex:2, alignItems:'flex-start'}}>
-                        <Switch value={this.props.joker} onValueChange={this.onJokerChanged} />
-                    </View>
-                </View>                
-            </View>
+                    </ListItem>
+                </Content>
+            </Container>
         );
     }
 });
@@ -44,7 +35,7 @@ const mapStateToProps = (state) => ({
     joker: state.cards.joker
 });
 
-const mapDispatchToProps =  ({setEnabled,setJoker,save});
+const mapDispatchToProps =  ({setEnabled,setJoker});
 
 module.exports = connect(
   mapStateToProps, 

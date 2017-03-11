@@ -1,15 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import {Style} from 'react-native-nub';
+import Style from '../services/style';
 import DiceView from './diceView';
 import CardsView from './cardsView';
-import {load} from '../actions/config';
 
 var MainView = React.createClass({
-    componentWillMount() {
-        this.props.load().done();
-    },        
     render() {
         return (
             <View style={{flex: 1, marginTop: Style.Scaling.scale(44)}}>
@@ -45,9 +41,6 @@ const mapStateToProps = (state) => ({
     cards: state.cards
 });
 
-const mapDispatchToProps =  ({load});
-
 module.exports = connect(
-  mapStateToProps, 
-  mapDispatchToProps
+  mapStateToProps
 )(MainView);

@@ -1,9 +1,9 @@
 import types from '../constants/actionTypes';
 
 const defaultState = {
-    enabled: false,
+    enabled: true,
     numsides: 6,           
-    numdice: 0
+    numdice: 4
 };
 
 module.exports = (state = defaultState, action) => {

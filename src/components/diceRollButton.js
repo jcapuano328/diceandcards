@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
-import {Style} from 'react-native-nub';
+import Style from '../services/style';
 import Images from '../res';
 
 var RollButton = React.createClass({

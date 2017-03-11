@@ -1,56 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Switch } from 'react-native';
-import {SpinNumeric,RadioButtonGroup,Style} from 'react-native-nub';
+import { Container, Content, Body, ListItem, Text, CheckBox, Radio } from 'native-base';
+import Spinner from 'rn-spinner';
+import Style from '../services/style';
 import {setEnabled,setSides,setNumber} from '../actions/dice';
-import {save} from '../actions/config';
 
 var ConfigurationDiceView = React.createClass({
     onEnabledChanged(v) {
         this.props.setEnabled(v);
-        this.props.save().done();        
     },
     onSidesChanged(v) {
-        this.props.setSides(+v);
-        this.props.save().done();
+        this.props.setSides(+v);        
     },    
-    onNumberChanged(v) {
-        this.props.setNumber(+v);
-        this.props.save().done();
+    onNumberChanged(v) {        
+        this.props.setNumber(+v);        
     },    
     render() {
         return (
-            <View style={{flex: 1}}>
-                <Text style={{fontSize: Style.Font.large(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Dice</Text>
-                <View style={{flex: 1, flexDirection:'row',alignItems: 'flex-start', marginLeft: 20}}>
-                    <View style={{flex:1, justifyContent: 'center'}}>
+            <Container>
+                <Content>            
+                    <Text style={{fontSize: Style.Font.large(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Dice</Text>
+                    <ListItem>
+                        <CheckBox checked={this.props.enabled} onPress={() => this.onEnabledChanged(!this.props.enabled)} />
                         <Text style={{fontSize: Style.Font.medium()}}>Enabled</Text>
-                    </View>
-                    <View style={{flex:2, alignItems:'flex-start'}}>
-                        <Switch value={this.props.enabled} onValueChange={this.onEnabledChanged} />
-                    </View>
-                </View>                
-                <View style={{flex: 1, flexDirection:'row',alignItems: 'center', justifyContent:'center', marginLeft: 20}}>
-                    <View style={{flex:1, justifyContent: 'center'}}>
+                    </ListItem>
+                    <ListItem>
                         <Text style={{fontSize: Style.Font.medium()}}>Sides</Text>
-                    </View>
-                    <View style={{flex:2}}>
-                        <RadioButtonGroup direction={'horizontal'}                        
-                            buttons={[{label:'6',value:'6'},{label:'10',value:'10'}]}
-                            state={this.props.sides.toString()}
-                            onSelected={this.onSidesChanged}/>
-                    </View>
-                </View>
-                <View style={{flex: 1, flexDirection:'row',alignItems: 'flex-start', justifyContent:'center',marginLeft: 20}}>
-                    <View style={{flex:1, justifyContent: 'center'}}>
+                        <ListItem selected={this.props.sides==6}>                                    
+                            <Radio selected={this.props.sides==6} onPress={() => this.onSidesChanged(6)}/>                            
+                            <Text>6</Text>                            
+                        </ListItem>
+                        <ListItem selected={this.props.sides==10}>                                    
+                            <Radio selected={this.props.sides==10} onPress={() => this.onSidesChanged(10)}/>
+                            <Text>10</Text>
+                        </ListItem>                        
+                    </ListItem>
+                    <ListItem>
                         <Text style={{fontSize: Style.Font.medium()}}>Number</Text>
-                    </View>
-                    <View style={{flex:2}}>
-                        <SpinNumeric value={this.props.number.toString()} min={1} onChanged={this.onNumberChanged} />
-                    </View>
-                </View>                
-                <View style={{flex:3}} />
-            </View>
+                        <Spinner max={10} min={1} default={this.props.number} onNumChange={this.onNumberChanged} />
+                    </ListItem>
+                </Content>
+            </Container>                        
         );
     }
 });
@@ -61,7 +51,7 @@ const mapStateToProps = (state) => ({
     number: state.dice.numdice
 });
 
-const mapDispatchToProps =  ({setEnabled,setSides,setNumber,save});
+const mapDispatchToProps =  ({setEnabled,setSides,setNumber});
 
 module.exports = connect(
   mapStateToProps, 

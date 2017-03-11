@@ -1,7 +1,7 @@
 import types from '../constants/actionTypes';
 
 const defaultState = {
-    enabled: false,
+    enabled: true,
     joker: false
 };
 

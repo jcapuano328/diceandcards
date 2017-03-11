@@ -1,6 +1,6 @@
 import React from 'react';
 import { Actions, Scene } from 'react-native-router-flux';
-import {NavBar} from 'react-native-nub';
+import NavBar from '../components/navBar';
 import {MainView,ConfigurationView,AboutView} from '../views';
 import Icons from '../res';
 

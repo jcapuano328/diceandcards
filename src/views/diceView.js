@@ -4,6 +4,7 @@ import { View, Image } from 'react-native';
 import DiceTray from '../components/diceTray';
 import RollButton from '../components/diceRollButton';
 import Dice from '../services/dice';
+import Style from '../services/style';
 import Images from '../res';
 
 var DiceView = React.createClass({
@@ -59,9 +60,9 @@ var DiceView = React.createClass({
                 backgroundColor: 'transparent'
             }}>           
                 <View style={{flex: 5, justifyContent: 'center', alignItems: 'center'}}>
-                    <DiceTray size={64} dice={this.dice} values={this.dice.map((d,i) => this.state['die'+(i+1)])} onDie={this.onDieChanged}/>
+                    <DiceTray size={Style.Scaling.scale(64)} dice={this.dice} values={this.dice.map((d,i) => this.state['die'+(i+1)])} onDie={this.onDieChanged}/>
                 </View>
-                <View style={{flex:2, flexDirection:'row', alignItems: 'center', marginBottom: 10}}>
+                <View style={{flex:2, flexDirection:'row', alignItems: 'center', marginBottom: 20}}>
                     <View style={{flex:1}} />
                     <View style={{flex:1}}>
                         <RollButton direction={'vertical'} onRoll={this.onDiceRoll} />

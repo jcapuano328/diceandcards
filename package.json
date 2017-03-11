@@ -1,24 +1,34 @@
 {
   "name": "diceandcards",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "debug": "node node_modules/react-native/local-cli/cli.js run-android",
     "build-rel": "cd android && gradlew assembleRelease && cd ..",
+    "build-stg": "cd android && gradlew assembleReleaseStaging && cd ..",
     "build-dbg": "cd android && gradlew assembleDebug && cd ..",
-    "install-dbg": "adb -d install -r android/app/build/outputs/apk/diceandcards-debug-1.0.apk",
-    "install-rel": "adb -d install -r android/app/build/outputs/apk/diceandcards-release-1.0.apk",
+    "install-dbg": "adb -d install -r android/app/build/outputs/apk/diceandcards-debug-1.1.apk",
+    "install-stg": "adb -d install -r android/app/build/outputs/apk/diceandcards-releaseStaging-1.1.apk",
+    "install-rel": "adb -d install -r android/app/build/outputs/apk/diceandcards-release-1.1.apk",
     "bridge": "adb reverse tcp:8081 tcp:8081",
     "menu": "adb shell input keyevent 82",
     "logs": "adb logcat *:S ReactNative:V ReactNativeJS:V",
     "test": "jest"
   },
   "dependencies": {
-    "react": "^15.4.1",
-    "react-native": "^0.39.2",
-    "react-native-audioplayer": "^0.2.0",
-    "react-native-nub": "https://git@github.com/jcapuano328/react-native-nub.git"
+    "native-base": "^2.0.12",
+    "react": "^15.4.2",
+    "react-native": "^0.42.0",
+    "react-native-code-push": "^1.17.2-beta",
+    "react-native-router-flux": "^3.38.0",
+    "react-native-sound": "^0.9.1",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.8.2",
+    "redux-persist": "^4.4.2",
+    "redux-thunk": "^2.2.0",
+    "rn-spinner": "^0.3.2"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",

@@ -1,11 +1,11 @@
 let defaultInfo = {
-    version: '1.0.0',
-    releasedate: new Date(2017,1,27,7,0,0)
+    version: '1.0.3',
+    releasedate: new Date(2017,2,11,11,0,0)
 };
 
 module.exports = (state = defaultInfo, action) => {
     switch (action.type) {
     default:
-        return state;
+        return {...defaultInfo};
     }
 }

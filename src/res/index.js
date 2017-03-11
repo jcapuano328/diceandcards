@@ -1,9 +1,7 @@
-import { Icons } from 'react-native-nub';
-
 module.exports = {
 	"logo": require('./menu.png'),			
-	"info": Icons['info-dark'],	
-	"back": Icons['chevron-left-dark'],
+	"info": require('./info-dark.png'),	
+	"back": require('./chevron-left-dark.png'),
 	"config": require('./gear-dark.png'),
 	
 	"acediamonds": require('./101.png'),

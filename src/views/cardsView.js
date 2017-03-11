@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
-import {IconButton} from 'react-native-nub';
+import IconButton from '../components/iconButton';
 import Cards from '../services/cards';
 import Images from '../res';
 
