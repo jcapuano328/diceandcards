@@ -9,7 +9,7 @@ var DiceTray = React.createClass({
       this.props.onDie && this.props.onDie(e);
     },
     render() {
-        let perrow = 5;//Math.ceil(this.props.dice.count() / rows);
+        let perrow = Math.min(5, this.props.dice.count());//Math.ceil(this.props.dice.count() / rows);
         let rows = this.props.rows || Math.ceil(this.props.dice.count() / perrow);    
         let size = this.props.size;
         return (

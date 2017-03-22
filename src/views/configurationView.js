@@ -8,7 +8,7 @@ var ConfigurationView = React.createClass({
     render() {
         return (
             <View style={{flex: 1, marginTop: Style.Scaling.scale(44)}}>
-                <View style={{flex:1}}>
+                <View style={{flex:3}}>
                     <ConfigurationDiceView />
                 </View>
                 <View style={{flex:1}}>

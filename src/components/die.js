@@ -10,7 +10,7 @@ var Die = React.createClass({
         case 9:
         case 10:
             return (
-                <View style={{flex:1, alignItems: 'center'}}>
+                <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                     <Die10 die={this.props.die} value={this.props.value} 
                         size={this.props.size} dieColor={this.props.diecolor} dotColor={this.props.dotcolor} 
                         onPress={this.props.onDie} />
@@ -18,7 +18,7 @@ var Die = React.createClass({
             );
         case 6:
             return (
-                <View style={{flex:1, alignItems: 'center'}}>
+                <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                     <Die6 die={this.props.die} value={this.props.value} 
                         size={this.props.size} dieColor={this.props.diecolor} dotColor={this.props.dotcolor} 
                         onPress={this.props.onDie} />

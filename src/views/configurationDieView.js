@@ -1,6 +1,6 @@
 import React from 'react';
-import {View,Platform} from 'react-native';
-import { Container, Content, Picker, Item, Text, Radio, Button, Icon } from 'native-base';
+import { TouchableOpacity } from 'react-native';
+import { View, Container, Content, Picker, Item, Text, Radio, Button, Icon } from 'native-base';
 import Die from '../components/die';
 import Style from '../services/style';
 import Dice from '../services/dice';
@@ -16,12 +16,12 @@ import Dice from '../services/dice';
 */
 
 var ConfigurationDieView = React.createClass({
-    onSidesChanged(v) {
-        return () => {
+    onSidesChanged(v) {        
+        return () => {            
             this.props.onChanged && this.props.onChanged(this.props.die, {
-            sides: v,
-            diecolor: this.props.diecolor,
-            dotcolor: this.props.dotcolor
+                sides: v,
+                diecolor: this.props.diecolor,
+                dotcolor: this.props.dotcolor
             });        
         }
     },    
@@ -36,29 +36,32 @@ var ConfigurationDieView = React.createClass({
         this.props.onChanged && this.props.onChanged(this.props.die, {
            sides: this.props.sides,
            diecolor: this.props.diecolor,
-           dotcolor: this.props.dotcolor
+           dotcolor: v
         });
     },
     onRemove() {        
-        return () => {
-            this.props.onRemove && this.props.onRemove(this.props.die);
-        }        
+        this.props.onRemove && this.props.onRemove(this.props.die);
     },    
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'row'}}>
-                <View style={{flex:1}}>
-                    {/* sides */}
+                <View style={{flex:3,justifyContent:'center', alignItems:'flex-start'}}>
+                    {/* sides 
                     <Text style={{fontSize: Style.Font.medium()}}>Sides</Text>
-                    {[6,8,10].map((s,i) => 
-                        <Item key={i} selected={this.props.sides==s}>
-                            <Radio selected={this.props.sides==s} onPress={() => this.onSidesChanged(s)}/>                            
-                            <Text>{s.toString()}</Text>
-                        </Item>
-                    )}
+                    */}
+                    <View style={{flexDirection:'row'}}>
+                        {[6,8,10].map((s,i) => 
+                            <View key={i} style={{flexDirection:'row',paddingLeft:2,paddingRight:2}}>
+                                <Radio selected={this.props.sides==s} onPress={this.onSidesChanged(s)}/>                            
+                                <Text style={{paddingLeft:2}}>{s.toString()}</Text>
+                            </View>
+                        )}
+                    </View>
                 </View>        
-                <View style={{flex:1}}>
-                    {/* die color */}
+                <View style={{flex:2,justifyContent:'center'}}>
+                    {/* die color 
+                    <Text style={{fontSize: Style.Font.medium()}}>Die</Text>
+                    */}
                     <Picker
                         iosHeader="Select Die Color"
                         mode="dropdown"
@@ -67,20 +70,33 @@ var ConfigurationDieView = React.createClass({
                             {Dice.colors.map((c,i) => <Item key={i} label={c} value={c} />)}
                    </Picker>                    
                 </View>        
-                <View style={{flex:1}}>
-                    {/* dot color */}
+                <View style={{flex:2,justifyContent:'center'}}>
+                    {/* dot color 
+                    <Text style={{fontSize: Style.Font.medium()}}>Dot</Text>
+                    */}
+                    <Picker
+                        iosHeader="Select Dot Color"
+                        mode="dropdown"
+                        selectedValue={this.props.dotcolor}
+                        onValueChange={this.onDotColorChanged}>
+                            {Dice.colors.map((c,i) => <Item key={i} label={c} value={c} />)}
+                   </Picker>                    
                 </View>        
-                <View style={{flex:1}}>                    
+                <View style={{flex:1}}>
                     {/* die preview */}                    
                     <Die die={this.props.die} value={this.props.sides} sides={this.props.sides}
-                        size={Style.Scaling.scale(32)} diecolor={this.props.diecolor} dotcolor={this.props.dotcolor}                         
+                        size={Style.Scaling.scale(24)} diecolor={this.props.diecolor} dotcolor={this.props.dotcolor}                         
                     />                                    
                 </View>        
-                <View style={{flex:1}}>
-                    {/* remove button */}
-                    <Button onPress={this.onRemove()}>
-                        <Icon name='ion-close-circled' />
-                    </Button>                                        
+                <View style={{flex:1,justifyContent:'center', alignItems:'center'}}>
+                    <TouchableOpacity onPress={this.onRemove}>
+                        <Icon name='md-close-circle' style={{color:'red'}} />
+                    </TouchableOpacity>
+                    {/* remove button                                
+                    <Button danger rounded transparent small onPress={this.onRemove}>
+                        <Icon name='md-close-circle' />
+                    </Button>         
+                    */}
                 </View>                
             </View>
         );

@@ -1,3 +1,4 @@
+import {REHYDRATE} from 'redux-persist/constants';
 import types from '../constants/actionTypes';
 
 const defaultState = {
@@ -8,8 +9,24 @@ const defaultState = {
     ]
 };
 
+let validState = (state) => {
+    if (!state || !state.dice || state.dice.some((d) => !d.sides || !d.diecolor || !d.dotcolor))
+        return {...defaultState};
+    return state;    
+}
+
 module.exports = (state = defaultState, action) => {
     switch (action.type) {
+    case REHYDRATE:
+        if (action.payload.dice) {
+            let s = {
+                ...state,
+                ...action.payload.dice
+            };
+            return validState(s);        	
+        }
+        return state;
+        
     case types.SET_DICE_CONFIG:
         if (action.value) {
             return {

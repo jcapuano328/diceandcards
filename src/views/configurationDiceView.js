@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container, Content, Body, ListItem, Text, CheckBox, Button, Icon } from 'native-base';
+import { View, Container, Content, Body, ListItem, Text, CheckBox, Button, Icon } from 'native-base';
 import Spinner from 'rn-spinner';
 import ConfigurationDieView from './configurationDieView';
 import Style from '../services/style';
@@ -24,13 +24,19 @@ var ConfigurationDiceView = React.createClass({
         this.props.setEnabled(v);
     },
     onAdd() {
-
+        let dice = [...this.props.dice];
+        dice.push({sides: 6, diecolor: 'red', dotcolor: 'white', value: 1});        
+        this.props.setDice(dice);        
     },
     onRemove(d) {
-
+        let dice = [...this.props.dice];
+        dice.splice(d,1);
+        this.props.setDice(dice);        
     },
-    onChanged(d) {
-
+    onChanged(i,d) {
+        let dice = [...this.props.dice];
+        dice[i] = d;
+        this.props.setDice(dice);
     },
     render() {
         return (
@@ -42,21 +48,38 @@ var ConfigurationDiceView = React.createClass({
                         <Text style={{fontSize: Style.Font.medium()}}>Enabled</Text>
                     </ListItem>
                     <ListItem>
-                        <Text style={{fontSize: Style.Font.medium()}}>Dice</Text>
-                        <Button onPress={this.onAdd}>
-                            <Icon name='ion-plus-circled' />
-                        </Button>                        
+                        <View style={{flex:1}}>
+                            <View style={{flex:1, flexDirection:'row'}}>
+                                <Button rounded bordered small iconRight onPress={this.onAdd}>
+                                    <Text>Add Die</Text>
+                                    <Icon name='md-add-circle' />
+                                </Button>                        
+                            </View>
+                            <View style={{flex: 1, flexDirection: 'row'}}>
+                                <View style={{flex:3, alignItems:'center'}}>
+                                    <Text style={{fontSize: Style.Font.medium(), alignSelf:'center'}}>Sides</Text>
+                                </View>        
+                                <View style={{flex:2, alignItems:'center'}}>
+                                    <Text style={{fontSize: Style.Font.medium(), alignSelf:'center'}}>Die</Text>
+                                </View>        
+                                <View style={{flex:2, alignItems:'center'}}>
+                                    <Text style={{fontSize: Style.Font.medium(), alignSelf:'center'}}>Dot</Text>
+                                </View>        
+                                <View style={{flex:2}}/>
+                            </View>                                                
+                            {this.props.dice.map((d,i) => 
+                                <ConfigurationDieView key={i}
+                                    die={i}
+                                    sides={d.sides}
+                                    diecolor={d.diecolor}
+                                    dotcolor={d.dotcolor}
+                                    onChanged={this.onChanged}
+                                    onRemove={this.onRemove}
+                                />
+                            )}
+                        </View>
                     </ListItem>                    
-                    {this.props.dice.map((d,i) => 
-                        <ListItem key={i}>
-                            <ConfigurationDieView
-                                sides={d.sides}
-                                diecolor={d.diecolor}
-                                dotcolor={d.dotcolor}
-                                onChanged={this.onChanged}
-                            />                                
-                        </ListItem>                        
-                    )}
+                    
                 </Content>
             </Container>                        
         );

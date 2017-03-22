@@ -6,51 +6,25 @@ import RollButton from '../components/diceRollButton';
 import Dice from '../services/dice';
 import Style from '../services/style';
 import Images from '../res';
+import {setDice} from '../actions/dice';
 
 var DiceView = React.createClass({
-    dice: [],
-    getInitialState() {
-        return this.buildDice();
-    },
-    buildDice(state) {
-        state = state || {};
-        if (state.number != this.props.number || state.sides != this.props.sides) {
-            let prevstate = {
-                ...this.state
-            };
-            
-            state.number = this.props.number;
-            state.sides = this.props.sides;
-            
-            let dice = [];
-            Object.keys(state).filter((k) => k.startsWith('die')).forEach((k) => delete state[k]);
-
-            let low = this.props.sides == 10 ? 0 : 1;
-            let high = this.props.sides == 10 ? 9 : this.props.sides;
-
-            for (var i=1; i<=this.props.number; i++) {                
-                state['die'+i.toString()] = prevstate['die'+i.toString()] || 1;
-                
-                dice.push({num: 1, low: low, high: high, color: Dice.dieColor(i), dotcolor: Dice.dotColor(i)});
-            }
-
-            this.dice = new Dice.Dice(dice);
-        }
-        return state;
-    },    
+    dice: null,
     onDieChanged(e) {
         let die = this.dice.dieEx(e);
         die.increment(true);
-        this.state['die'+d] = die.value();    
-        this.setState(this.state);
+        this.props.dice[e-1].value = die.value();
+        this.props.setDice(this.props.dice);
     },
     onDiceRoll() {
         this.dice.roll();
-        this.dice.dice().forEach((die,i) => this.state['die'+(i+1)] = die.value);        
-		this.setState(this.state);
+        this.dice.dice().forEach((die,i) => this.props.dice[i].value = die.value);        
+        this.props.setDice(this.props.dice);
     },    
     render() {
-        this.buildDice(this.state);                
+        this.dice = new Dice.Dice(this.props.dice.map((d) => {
+            return {num: 1, low: Dice.low(d.sides), high: Dice.high(d.sides), color: d.diecolor, dotcolor: d.dotcolor}
+        }));
         return (
             <Image source={Images.dicetable} resizeMode={'stretch'} style={{
                 flex: 1,
@@ -60,7 +34,7 @@ var DiceView = React.createClass({
                 backgroundColor: 'transparent'
             }}>           
                 <View style={{flex: 5, justifyContent: 'center', alignItems: 'center'}}>
-                    <DiceTray size={Style.Scaling.scale(64)} dice={this.dice} values={this.dice.map((d,i) => this.state['die'+(i+1)])} onDie={this.onDieChanged}/>
+                    <DiceTray size={Style.Scaling.scale(64)} dice={this.dice} values={this.dice.map((d,i) => this.props.dice[i].value)} onDie={this.onDieChanged}/>
                 </View>
                 <View style={{flex:2, flexDirection:'row', alignItems: 'center', marginBottom: 20}}>
                     <View style={{flex:1}} />
@@ -75,10 +49,12 @@ var DiceView = React.createClass({
 });
 
 const mapStateToProps = (state) => ({    
-    sides: state.dice.numsides,
-    number: state.dice.numdice
+    dice: state.dice.dice
 });
 
+const mapDispatchToProps =  ({setDice});
+
 module.exports = connect(
-  mapStateToProps
+  mapStateToProps, 
+  mapDispatchToProps
 )(DiceView);

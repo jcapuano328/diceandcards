@@ -72,6 +72,14 @@ function Dice(opts) {
 module.exports = {
 	Die: Die,
 	Dice: Dice,
+	low(sides) {
+		if (sides == 10) {return 0;}
+		return 1;
+	},
+	high(sides) {
+		if (sides == 10) {return 9;}
+		return sides;
+	},
 	colors: ['red', 'white', 'black', 'yellow', 'blue', 'green', 'purple'],
     dieColor(i) {
 		switch(i) {
