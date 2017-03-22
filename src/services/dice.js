@@ -72,6 +72,7 @@ function Dice(opts) {
 module.exports = {
 	Die: Die,
 	Dice: Dice,
+	colors: ['red', 'white', 'black', 'yellow', 'blue', 'green', 'purple'],
     dieColor(i) {
 		switch(i) {
 		case 1:

@@ -17,12 +17,15 @@ import rootReducer from '../reducers';
         },
         dice: { 
             enabled: bool,
-            numsides: int,           
-            numdice: int
+            dice: [
+                {sides: int, diecolor: string, dotcolor: string, value: int}
+            ]
         },
         cards: {
             enabled: bool,
-            joker: bool
+            joker: bool,
+            deck: [string],
+            card: string
         }
     }
 */

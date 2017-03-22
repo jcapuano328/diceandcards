@@ -2,8 +2,10 @@ import types from '../constants/actionTypes';
 
 const defaultState = {
     enabled: true,
-    numsides: 6,           
-    numdice: 4
+    dice: [
+        {sides: 6, diecolor: 'red', dotcolor: 'white', value: 1},
+        {sides: 6, diecolor: 'white', dotcolor: 'black', value: 1}
+    ]
 };
 
 module.exports = (state = defaultState, action) => {
@@ -11,6 +13,7 @@ module.exports = (state = defaultState, action) => {
     case types.SET_DICE_CONFIG:
         if (action.value) {
             return {
+                ...state,
                 ...action.value
             };
         }
@@ -22,16 +25,10 @@ module.exports = (state = defaultState, action) => {
             enabled: action.value
         };
 
-    case types.SET_DICE_CONFIG_SIDES:
+    case types.SET_DICE_CONFIG_DICE:
         return {
             ...state,
-            numsides: action.value
-        };
-
-    case types.SET_DICE_CONFIG_NUM:
-        return {
-            ...state,
-            numdice: action.value
+            dice: [...action.value]            
         };
 
     default:

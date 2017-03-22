@@ -27,6 +27,25 @@ module.exports = (state = defaultState, action) => {
             joker: action.value
         };
 
+    case types.SET_CARD_CONFIG_DECK:
+        return {
+            ...state,
+            deck: action.value
+        };
+
+    case types.SET_CARD_CONFIG_CARD:
+        return {
+            ...state,
+            card: action.value
+        };
+
+    case types.SET_CARD_CONFIG_DECK_AND_CARD:
+        return {
+            ...state,
+            deck: action.value.deck,
+            card: action.value.card
+        };
+
     default:
         return state;
     }

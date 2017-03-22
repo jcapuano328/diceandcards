@@ -1,8 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Dice from '../services/dice';
-import Die6 from './die6Sided';
-import Die10 from './die10Sided';
+import Die from './die';
 import range from '../services/range';
 
 var DiceTray = React.createClass({    
@@ -27,23 +26,13 @@ var DiceTray = React.createClass({
                                 if (idx<this.props.values.length) {
                                     die.value(this.props.values[idx]);
                                 }
-                                switch(die.sides()) {
-                                case 9:
-                                case 10:
-                                    return (
-                                        <View key={idx+1} style={{flex:1, alignItems: 'center'}}>
-                                        <Die10 die={idx+1} value={die.value()} size={this.props.size} color={die.color()} onPress={this.onDie} />
-                                        </View>
-                                    );
-                                case 6:
-                                    return (
-                                        <View key={idx+1} style={{flex:1, alignItems: 'center'}}>
-                                        <Die6 die={idx+1} value={die.value()} size={this.props.size} color={die.color()} onPress={this.onDie} />
-                                        </View>
-                                    );
-                                default:
-                                    return <View key={idx+1} style={{flex:1}} />
-                                }                    
+                                return (                                    
+                                    <Die key={idx+1} 
+                                        die={idx+1} value={die.value()} sides={die.sides()}                                        
+                                        size={this.props.size} diecolor={die.color().die} dotcolor={die.color().dot} 
+                                        onPress={this.onDie} 
+                                    />
+                                );
                             })}
                         </View>
                     );

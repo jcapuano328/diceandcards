@@ -1,20 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container, Content, Body, ListItem, Text, CheckBox, Radio } from 'native-base';
+import { Container, Content, Body, ListItem, Text, CheckBox, Button, Icon } from 'native-base';
 import Spinner from 'rn-spinner';
+import ConfigurationDieView from './configurationDieView';
 import Style from '../services/style';
-import {setEnabled,setSides,setNumber} from '../actions/dice';
+import {setEnabled,setDice} from '../actions/dice';
+
+/*
+
+|-------------------------------------------|
+|             [ Dice ]                      |
+|  [switch enabled]                         |
+|  <add button>                             |
+|  [list of die definitions]                |
+|                                           |
+|                                           |
+|-------------------------------------------|
+
+*/
 
 var ConfigurationDiceView = React.createClass({
     onEnabledChanged(v) {
         this.props.setEnabled(v);
     },
-    onSidesChanged(v) {
-        this.props.setSides(+v);        
-    },    
-    onNumberChanged(v) {        
-        this.props.setNumber(+v);        
-    },    
+    onAdd() {
+
+    },
+    onRemove(d) {
+
+    },
+    onChanged(d) {
+
+    },
     render() {
         return (
             <Container>
@@ -25,20 +42,21 @@ var ConfigurationDiceView = React.createClass({
                         <Text style={{fontSize: Style.Font.medium()}}>Enabled</Text>
                     </ListItem>
                     <ListItem>
-                        <Text style={{fontSize: Style.Font.medium()}}>Sides</Text>
-                        <ListItem selected={this.props.sides==6}>                                    
-                            <Radio selected={this.props.sides==6} onPress={() => this.onSidesChanged(6)}/>                            
-                            <Text>6</Text>                            
-                        </ListItem>
-                        <ListItem selected={this.props.sides==10}>                                    
-                            <Radio selected={this.props.sides==10} onPress={() => this.onSidesChanged(10)}/>
-                            <Text>10</Text>
+                        <Text style={{fontSize: Style.Font.medium()}}>Dice</Text>
+                        <Button onPress={this.onAdd}>
+                            <Icon name='ion-plus-circled' />
+                        </Button>                        
+                    </ListItem>                    
+                    {this.props.dice.map((d,i) => 
+                        <ListItem key={i}>
+                            <ConfigurationDieView
+                                sides={d.sides}
+                                diecolor={d.diecolor}
+                                dotcolor={d.dotcolor}
+                                onChanged={this.onChanged}
+                            />                                
                         </ListItem>                        
-                    </ListItem>
-                    <ListItem>
-                        <Text style={{fontSize: Style.Font.medium()}}>Number</Text>
-                        <Spinner max={10} min={1} default={this.props.number} onNumChange={this.onNumberChanged} />
-                    </ListItem>
+                    )}
                 </Content>
             </Container>                        
         );
@@ -47,11 +65,10 @@ var ConfigurationDiceView = React.createClass({
 
 const mapStateToProps = (state) => ({
     enabled: state.dice.enabled,
-    sides: state.dice.numsides,
-    number: state.dice.numdice
+    dice: state.dice.dice
 });
 
-const mapDispatchToProps =  ({setEnabled,setSides,setNumber});
+const mapDispatchToProps =  ({setEnabled,setDice});
 
 module.exports = connect(
   mapStateToProps, 

@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Style from '../services/style';
 import Dice from '../services/dice';
-import Die6 from './die6Sided';
-import Die10 from './die10Sided';
+import Die from './die';
 import RollButton from './diceRollButton';
 
 
@@ -26,23 +25,13 @@ var DiceRoll = React.createClass({
                     if (i<this.props.values.length) {
                         die.value(this.props.values[i]);
                     }
-                    switch(die.sides()) {
-                    case 9:
-                    case 10:
-                        return (
-                            <View key={i} style={{flex:1}}>
-                            <Die10 die={i+1} value={die.value()} size={this.props.size} color={die.color()} onPress={this.onDie} />
-                            </View>
-                        );
-                    case 6:
-                        return (
-                            <View key={i} style={{flex:1}}>
-                            <Die6 die={i+1} value={die.value()} size={this.props.size} color={die.color()} onPress={this.onDie} />
-                            </View>
-                        );
-                    default:
-                        return <View key={i} style={{flex:1}} />
-                    }
+                    return (                                    
+                        <Die key={idx+1} 
+                            die={idx+1} value={die.value()} sides={die.sides()}
+                            size={this.props.size} diecolor={die.color().die} dotcolor={die.color().dot} 
+                            onPress={this.onDie} 
+                        />                                    
+                    );
                 })}
                 <View style={{flex:1.25}}>
                     <RollButton buttonColor={this.props.buttonColor} buttonBackgroundColor={this.props.buttonBackgroundColor}
