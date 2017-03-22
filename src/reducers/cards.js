@@ -2,7 +2,9 @@ import types from '../constants/actionTypes';
 
 const defaultState = {
     enabled: true,
-    joker: false
+    joker: false,
+    deck: [],
+    card: null
 };
 
 module.exports = (state = defaultState, action) => {

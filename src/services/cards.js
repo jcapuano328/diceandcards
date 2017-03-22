@@ -34,8 +34,9 @@ let contains = (joker) => {
 }
 
 module.exports = {
-    draw() {
+    draw(deck) {
         Sound.play('carddraw.wav');
+        return deck.shift();        
     },
     shuffle(includejoker) {
         Sound.play('cardshuffle.wav');             

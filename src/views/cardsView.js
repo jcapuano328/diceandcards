@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { View, Image, TouchableOpacity } from 'react-native';
 import IconButton from '../components/iconButton';
 import Cards from '../services/cards';
+import {setDeckAndCard} from '../actions/cards';
+
 import Images from '../res';
 
 var CardsView = React.createClass({
@@ -12,9 +14,7 @@ var CardsView = React.createClass({
             y: 0,
             width: 0,
             height: 0,
-            viewHeight: 100,                  
-            cards: null,//Cards.shuffle(this.props.includejoker),
-            card: null
+            viewHeight: 100
         };
     },    
     onLayout(e) {                
@@ -27,14 +27,13 @@ var CardsView = React.createClass({
             });
         }
     },    
-    onDeckShuffle() {        
-        this.setState({cards: Cards.shuffle(this.props.includejoker), card: null});
+    onDeckShuffle() {    
+        this.props.setDeckAndCard(Cards.shuffle(this.props.includejoker), null);
     },
     onCardDraw() {
-        if (this.state.cards.length > 0) {
-            Cards.draw();
-            let card = this.state.cards.shift();
-            this.setState({cards: this.state.cards, card: card});
+        if (this.props.deck.length > 0) {
+            let card = Cards.draw(this.props.deck);
+            this.props.setDeckAndCard(this.props.deck, card);
         }
     },
     render() {		
@@ -42,8 +41,8 @@ var CardsView = React.createClass({
         let cwidth = (this.state.width * 0.85) || 96;
         let cheight = cwidth * 1.26;
         let bsize = cwidth * 0.66;
-        let deck = this.state.cards && this.state.cards.length > 0 ? Images.deck : Images.empty;
-        let card = Images[this.state.card] || Images.blank;		        
+        let deck = this.props.deck.length > 0 ? Images.deck : Images.empty;
+        let card = Images[this.props.card] || Images.blank;		        
         return (
             <View style={{flex: 1}}>
                 <Image source={Images.cardtable} resizeMode={'stretch'} style={{
@@ -78,9 +77,15 @@ var CardsView = React.createClass({
 });
 
 const mapStateToProps = (state) => ({    
-    includejoker: state.cards.joker
+    includejoker: state.cards.joker,
+    deck: state.cards.deck || [],
+    card: state.cards.card
 });
 
+const mapDispatchToProps =  ({setDeckAndCard});
+
+
 module.exports = connect(
-  mapStateToProps
+  mapStateToProps, 
+  mapDispatchToProps
 )(CardsView);
