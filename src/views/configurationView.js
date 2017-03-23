@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Style from '../services/style';
 import ConfigurationDiceView from './configurationDiceView';
+import ConfigurationSpinView from './configurationSpinView';
 import ConfigurationCardsView from './configurationCardsView';
 
 var ConfigurationView = React.createClass({
@@ -11,6 +12,9 @@ var ConfigurationView = React.createClass({
                 <View style={{flex:3}}>
                     <ConfigurationDiceView />
                 </View>
+                <View style={{flex:1}}>
+                    <ConfigurationSpinView />
+                </View>                
                 <View style={{flex:1}}>
                     <ConfigurationCardsView />
                 </View>                

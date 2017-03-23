@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { View, Container, Content, Body, ListItem, Text, CheckBox, Button, Icon } from 'native-base';
-import Spinner from 'rn-spinner';
 import ConfigurationDieView from './configurationDieView';
 import Style from '../services/style';
 import {setEnabled,setDice} from '../actions/dice';

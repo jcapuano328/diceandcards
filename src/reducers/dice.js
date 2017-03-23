@@ -26,16 +26,7 @@ module.exports = (state = defaultState, action) => {
             return validState(s);        	
         }
         return state;
-        
-    case types.SET_DICE_CONFIG:
-        if (action.value) {
-            return {
-                ...state,
-                ...action.value
-            };
-        }
-        return state;
-        
+                
     case types.SET_DICE_CONFIG_ENABLED:
         return {
             ...state,

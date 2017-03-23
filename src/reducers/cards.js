@@ -9,14 +9,6 @@ const defaultState = {
 
 module.exports = (state = defaultState, action) => {
     switch (action.type) {
-    case types.SET_CARD_CONFIG:
-        if (action.value) {
-            return {
-                ...action.value
-            };
-        }
-        return state;
-
     case types.SET_CARD_CONFIG_ENABLED:
         return {
             ...state,

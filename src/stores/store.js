@@ -21,6 +21,11 @@ import rootReducer from '../reducers';
                 {sides: int, diecolor: string, dotcolor: string, value: int}
             ]
         },
+        spin: {
+            enabled: bool,
+            number: int,
+            values: [int]
+        },
         cards: {
             enabled: bool,
             joker: bool,
