@@ -7,6 +7,7 @@ import Dice from '../services/dice';
 import Style from '../services/style';
 import Images from '../res';
 import {setDice} from '../actions/dice';
+import {setValue} from '../actions/spin';
 
 var DiceView = React.createClass({
     dice: null,
@@ -49,10 +50,11 @@ var DiceView = React.createClass({
 });
 
 const mapStateToProps = (state) => ({    
-    dice: state.dice.dice
+    dice: state.dice.dice,
+    spinfollow: state.spin.followdice
 });
 
-const mapDispatchToProps =  ({setDice});
+const mapDispatchToProps =  ({setDice,setValue});
 
 module.exports = connect(
   mapStateToProps, 

@@ -40,10 +40,25 @@ module.exports = (state = defaultState, action) => {
             values: [...getValues(state.values,action.value)]
         };
 
+    case types.SET_SPIN_CONFIG_FOLLOWDICE:
+        return {
+            ...state,
+            followdice: action.value
+        };
+
+
     case types.SET_SPIN_CONFIG_VALUES:
         return {
             ...state,
             values: [...action.value]
+        };
+
+    case types.SET_SPIN_CONFIG_VALUE:
+        let l = [...state.values];
+        l[action.value.index] = action.value.value;
+        return {
+            ...state,
+            values:  l
         };
 
     default:
