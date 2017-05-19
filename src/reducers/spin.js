@@ -11,9 +11,9 @@ let getValues = (v,c) => {
 
 
 const defaultState = {
-    enabled: true,
-    number: 1,
-    values: [0]
+    enabled: false,
+    number: 0,
+    values: []
 };
 
 module.exports = (state = defaultState, action) => {
@@ -55,10 +55,12 @@ module.exports = (state = defaultState, action) => {
 
     case types.SET_SPIN_CONFIG_VALUE:
         let l = [...state.values];
-        l[action.value.index] = action.value.value;
+        if (action.value.index < l.length) {
+            l[action.value.index] = action.value.value;
+        }            
         return {
             ...state,
-            values:  l
+            values: l
         };
 
     default:

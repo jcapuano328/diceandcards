@@ -27,11 +27,10 @@ var ConfigurationSpinView = React.createClass({
                     <ListItem>
                         <Text style={{fontSize: Style.Font.medium()}}>Number</Text>
                         <Spinner max={10} min={1} default={this.props.number} onNumChange={this.onNumberChanged} />
-                    </ListItem>
-                    <ListItem>
+                        <Text>{'   '}</Text>
                         <CheckBox checked={this.props.followdice} onPress={() => this.onFollowDiceChanged(!this.props.followdice)} />
-                        <Text style={{fontSize: Style.Font.medium()}}>Enabled</Text>
-                    </ListItem>                    
+                        <Text style={{fontSize: Style.Font.medium()}}>Follow Dice</Text>                        
+                    </ListItem>
                 </Content>
             </Container>                        
         );

@@ -16,11 +16,17 @@ var DiceView = React.createClass({
         die.increment(true);
         this.props.dice[e-1].value = die.value();
         this.props.setDice(this.props.dice);
+        if (this.props.spinfollow) {
+            this.props.setValue(die.value(), 0);//e-1);
+        }        
     },
     onDiceRoll() {
         this.dice.roll();
         this.dice.dice().forEach((die,i) => this.props.dice[i].value = die.value);        
         this.props.setDice(this.props.dice);
+        if (this.props.spinfollow) {
+            this.props.setValue(this.props.dice[0].value, 0);
+        }
     },    
     render() {
         this.dice = new Dice.Dice(this.props.dice.map((d) => {

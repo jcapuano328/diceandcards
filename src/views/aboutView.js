@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import About from '../components/about';
 import {logo} from '../res';
 
@@ -8,7 +9,7 @@ const AboutView = (props) => {
         <About logo={logo}
             title={'About Dice and Cards'}
             version={props.version}
-            releasedate={props.releasedate}
+            releasedate={moment(props.releasedate).format("MMMM Do YYYY, h:mm:ss a")}
             description={'A simple dice roller/card drawer(?)'}
             dependencies={[
                 {description: 'react-redux', url: 'https://github.com/reactjs/react-redux'},

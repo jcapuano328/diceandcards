@@ -13,12 +13,12 @@ var SpinnerView = React.createClass({
         }            
     },
     render() {
-        //let justify = this.props.values.length > 1 ? 'space-between' : 'center';
+        //let justify = this.props.values.length > 1 ? 'space-between' : 'center';        
         return (
             <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', 
                 justifyContent: 'center', alignItems: 'center',
                 backgroundColor: 'lightgray',
-                marginLeft: 10, marginRight: 10}}>
+                marginLeft: 10, marginRight: 10}}>                
                 {this.props.values.map((v,i) => 
                     <View key={i} style={{marginLeft: 10, marginRight: 10}}>
                     <Spinner max={100} min={-100} 
@@ -26,10 +26,10 @@ var SpinnerView = React.createClass({
                         height={Style.Scaling.scale(30)} 
                         fontSize={Style.Font.large()}
                         btnFontSize={Style.Font.large()} 
-                        default={v} 
+                        value={+v} 
                         onNumChange={this.onChange(i)} />
-                    </View>
-                )}                
+                    </View>                    
+                )} 
             </View>
         );
     }
