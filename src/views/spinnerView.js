@@ -36,7 +36,7 @@ var SpinnerView = React.createClass({
 });
 
 const mapStateToProps = (state) => ({    
-    values: state.spin.values
+    values: state.spin.values    
 });
 
 const mapDispatchToProps =  ({setValues});

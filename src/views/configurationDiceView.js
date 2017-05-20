@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Container, Content, Body, ListItem, Text, CheckBox, Button, Icon } from 'native-base';
+import { View, Container, Content, Body, ListItem, Text, CheckBox, Radio, Button, Icon } from 'native-base';
 import ConfigurationDieView from './configurationDieView';
 import Style from '../services/style';
-import {setEnabled,setDice} from '../actions/dice';
+import {setEnabled,setZero,setDice} from '../actions/dice';
 
 /*
 
@@ -21,6 +21,9 @@ import {setEnabled,setDice} from '../actions/dice';
 var ConfigurationDiceView = React.createClass({
     onEnabledChanged(v) {
         this.props.setEnabled(v);
+    },
+    onZeroChanged(v) {
+        this.props.setZero(v);
     },
     onAdd() {
         let dice = [...this.props.dice];
@@ -49,10 +52,20 @@ var ConfigurationDiceView = React.createClass({
                     <ListItem>
                         <View style={{flex:1}}>
                             <View style={{flex:1, flexDirection:'row'}}>
-                                <Button rounded bordered small iconRight onPress={this.onAdd}>
-                                    <Text>Add Die</Text>
-                                    <Icon name='md-add-circle' />
-                                </Button>                        
+                                <View style={{flex:1}}>
+                                    <Button rounded bordered small iconRight onPress={this.onAdd}>
+                                        <Text>Add Die</Text>
+                                        <Icon name='md-add-circle' />
+                                    </Button>
+                                </View>
+                                <View style={{flex:1, flexDirection:'row'}}>
+                                    <View style={{flex:1}}>
+                                    <CheckBox checked={this.props.zero} onPress={() => this.onZeroChanged(!this.props.zero)} />
+                                    </View>
+                                    <View style={{flex:3, alignItems:'flex-start'}}>
+                                    <Text style={{fontSize: Style.Font.medium()}}>Treat 0 as 10</Text>                                
+                                    </View>
+                                </View>
                             </View>
                             <View style={{flex: 1, flexDirection: 'row'}}>
                                 <View style={{flex:3, alignItems:'center'}}>
@@ -78,7 +91,6 @@ var ConfigurationDiceView = React.createClass({
                             )}
                         </View>
                     </ListItem>                    
-                    
                 </Content>
             </Container>                        
         );
@@ -87,10 +99,11 @@ var ConfigurationDiceView = React.createClass({
 
 const mapStateToProps = (state) => ({
     enabled: state.dice.enabled,
+    zero: state.dice.zero,
     dice: state.dice.dice
 });
 
-const mapDispatchToProps =  ({setEnabled,setDice});
+const mapDispatchToProps =  ({setEnabled,setDice,setZero});
 
 module.exports = connect(
   mapStateToProps, 

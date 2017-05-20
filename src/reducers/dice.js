@@ -33,6 +33,12 @@ module.exports = (state = defaultState, action) => {
             enabled: action.value
         };
 
+    case types.SET_DICE_CONFIG_ZERO:
+        return {
+            ...state,
+            zero: action.value
+        };
+
     case types.SET_DICE_CONFIG_DICE:
         return {
             ...state,

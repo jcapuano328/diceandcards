@@ -17,6 +17,7 @@ import rootReducer from '../reducers';
         },
         dice: { 
             enabled: bool,
+            zero: bool,
             dice: [
                 {sides: int, diecolor: string, dotcolor: string, value: int}
             ]

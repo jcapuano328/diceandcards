@@ -17,7 +17,11 @@ var DiceView = React.createClass({
         this.props.dice[e-1].value = die.value();
         this.props.setDice(this.props.dice);
         if (this.props.spinfollow) {
-            this.props.setValue(die.value(), 0);//e-1);
+            let v = die.value();
+            if (v == 0 && this.props.zero) {
+                v = 10;
+            }            
+            this.props.setValue(v, 0);//e-1);
         }        
     },
     onDiceRoll() {
@@ -25,7 +29,12 @@ var DiceView = React.createClass({
         this.dice.dice().forEach((die,i) => this.props.dice[i].value = die.value);        
         this.props.setDice(this.props.dice);
         if (this.props.spinfollow) {
-            this.props.setValue(this.props.dice[0].value, 0);
+            let v = this.props.dice[0].value;
+            if (v == 0 && this.props.zero) {
+                v = 10;
+            }
+            
+            this.props.setValue(v, 0);
         }
     },    
     render() {
@@ -57,6 +66,7 @@ var DiceView = React.createClass({
 
 const mapStateToProps = (state) => ({    
     dice: state.dice.dice,
+    zero: state.dice.zero,    
     spinfollow: state.spin.followdice
 });
 
