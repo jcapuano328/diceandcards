@@ -29,9 +29,15 @@ import rootReducer from '../reducers';
         },
         cards: {
             enabled: bool,
-            joker: bool,
-            deck: [string],
-            card: string
+            decks: [
+                {
+                    jokers: int,
+                    suits: [string],
+                    facecards: bool,
+                    deck: [string],
+                    card: string                    
+                }
+            ]
         }
     }
 */

@@ -9,27 +9,42 @@ let shuffle = (a) => {
 	return a;
 }
 
-let contains = (joker) => {
+let contains = (opts) => {
+    let o = {...opts};
+    let a = [
+        "ace",
+        "duece",	
+        "trey",	
+        "four",	
+        "five",	
+        "six",	
+        "seven",	
+        "eight",	
+        "nine",	
+        "ten",	
+        "jack",	
+        "queen",	
+        "king"  
+    ].filter((c) => o.facecards || (c != 'jack' && c != 'queen' && c != 'king' && c != 'ace'));    
+    let deck = [];
+    while (o.jokers-- > 0)
+        deck.push('joker');    
+    o.suits.filter((s) => {
+        if (o.color == 'red') {
+            return s == 'diamonds' || s == 'hearts';
+        } 
+        if (o.color == 'black') {
+            return s == 'clubs' || s == 'spades';
+        } 
+        return true;      
+    }).forEach((s) => {
+        a.forEach((c) => {
+            deck.push(c+s);
+        });
+    });
+    
     return (s) => {
-        let a = [
-            "ace",
-            "duece",	
-            "trey",	
-            "four",	
-            "five",	
-            "six",	
-            "seven",	
-            "eight",	
-            "nine",	
-            "ten",	
-            "jack",	
-            "queen",	
-            "king"	        
-        ];
-        if (joker) {
-            a.push('joker');
-        }
-        return a.some((e) => s.includes(e));
+        return deck.some((e) => s.includes(e));
     }
 }
 
@@ -38,8 +53,19 @@ module.exports = {
         Sound.play('carddraw.wav');
         return deck.shift();        
     },
-    shuffle(includejoker) {
+    shuffle(opts) {
+        opts = opts || {};
+        let defopts = {
+            jokers: 0,
+            color: null,
+            suits: ['diamonds','clubs','hearts','spades'],
+            facecards: true            
+        };
+        let o = {
+            ...defopts,
+            ...opts
+        };
         Sound.play('cardshuffle.wav');             
-        return shuffle(Object.keys(Images||{}).filter(contains(includejoker)));
+        return shuffle(Object.keys(Images||{}).filter(contains(o)));
     }
 }

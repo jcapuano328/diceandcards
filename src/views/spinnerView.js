@@ -18,7 +18,7 @@ var SpinnerView = React.createClass({
             <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', 
                 justifyContent: 'center', alignItems: 'center',
                 backgroundColor: 'lightgray',
-                marginLeft: 10, marginRight: 10}}>                
+                marginLeft: 0, marginRight: 0}}>                
                 {this.props.values.map((v,i) => 
                     <View key={i} style={{marginLeft: 10, marginRight: 10}}>
                     <Spinner max={100} min={-100} 

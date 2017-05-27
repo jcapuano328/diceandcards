@@ -61,6 +61,11 @@ module.exports = {
 	"kingspades": require('./152.png'),	
 
 	"joker": require('./154.png'),	
+
+	"hearts": require('./hearts.png'),
+	"diamonds": require('./diamonds.png'),
+	"clubs": require('./clubs.png'),
+	"spades": require('./spades.png'),
 	
 	"deck": require('./155.png'),	
 	"empty": require('./empty.png'),
