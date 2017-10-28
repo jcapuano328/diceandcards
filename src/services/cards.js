@@ -28,7 +28,7 @@ let contains = (opts) => {
     ].filter((c) => o.facecards || (c != 'jack' && c != 'queen' && c != 'king' && c != 'ace'));    
     let deck = [];
     while (o.jokers-- > 0)
-        deck.push('joker');    
+        deck.push('joker-' + ((o.jokers % 2 == 0) ? 'black':'red'));         
     o.suits.filter((s) => {
         if (o.color == 'red') {
             return s == 'diamonds' || s == 'hearts';

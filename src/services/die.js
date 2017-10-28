@@ -41,7 +41,7 @@ function Die(low, high, diecolor, dotcolor) {
         }
     }
     self.roll = function() {
-    	value = randomBetween(low, high);
+		value = randomBetween(low, high);		
         return value;
     }
 }
