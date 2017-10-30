@@ -76,5 +76,17 @@ module.exports = {
 	"shuffle": require('./shuffle-dark.png'),
 	"cardtable": require('./table1.jpg'),
 	"dicetable": require('./table4.jpg'),
-	"diceroll": require('./dicecup.png')
+	"diceroll": require('./dicecup.png'),
+
+
+	"chevron-left-dark": require('./chevron-left-dark.png'),
+	"chevron-right-dark": require('./chevron-right-dark.png'),	
+	"chevron-left-light": require('./chevron-left-light.png'),
+	"chevron-right-light": require('./chevron-right-light.png'),
+	"add": require('./add.png'),
+	"remove": require('./remove.png'),
+	"on": require('./abc_btn_radio_to_on_mtrl_015.png'),
+	"off": require('./abc_btn_radio_to_on_mtrl_000.png'),
+	"unchecked": require('./abc_btn_check_to_on_mtrl_000.png'),//check-checked.png'),
+	"checked": require('./abc_btn_check_to_on_mtrl_015.png')//check-unchecked.png')	
 };
