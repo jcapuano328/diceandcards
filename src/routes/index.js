@@ -31,8 +31,8 @@ const NavBarBack = NavBar(navBarOptsBack);
 
 export default Actions.create(
     <Scene key="root" navBar={NavBarMain}>
-        <Scene key="home" type="reset" component={MainView} title="Dice and Cards" />
-        <Scene key="config" navBar={NavBarBack} component={ConfigurationView} title="Configuration"  initial={true}/>
+        <Scene key="home" type="reset" component={MainView} title="Dice and Cards" initial={true} />
+        <Scene key="config" navBar={NavBarBack} component={ConfigurationView} title="Configuration" />
         <Scene key="about" navBar={NavBarBack} component={AboutView} title="About" />
     </Scene>
 );

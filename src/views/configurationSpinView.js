@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Container, Content, Body, ListItem, Text, CheckBox } from 'native-base';
-import Spinner from 'rn-spinner';
+import { View, Text, ScrollView } from 'react-native';
+import {RadioButtonGroup,SpinNumeric,CheckBox,IconButton} from '../widgets';
+//import Spinner from 'rn-spinner';
 import Style from '../services/style';
 import {setEnabled,setNumber,setFollowDice} from '../actions/spin';
 
@@ -20,31 +21,19 @@ var ConfigurationSpinView = React.createClass({
             <View style={{flex:1}}>
                 <Text style={{fontSize: Style.Font.large(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Spinners</Text>
                 <View style={{flex:1, flexDirection:'row'}}>
-                    <View style={{flex:2, flexDirection:'row', alignItems:'center'}}>
-                        <View style={{flex:1}}>
-                        <CheckBox checked={this.props.enabled} onPress={() => this.onEnabledChanged(!this.props.enabled)} />
-                        </View>
-                        <View style={{flex:5}}>
-                        <Text style={{fontSize: Style.Font.medium()}}>Enabled</Text>
-                        </View>
-                    </View>                            
-                    <View style={{flex:3, flexDirection:'row', alignItems:'center'}}>
-                        <View style={{flex:1}}>
-                            <Text style={{fontSize: Style.Font.medium()}}>Number</Text>
-                        </View>
-                        <View style={{flex:2, alignItems:'flex-start'}}>
-                            <Spinner max={10} min={1} default={this.props.number} onNumChange={this.onNumberChanged} />                                
-                        </View>
-                    </View>                            
-                    <View style={{flex:2, flexDirection:'row', alignItems:'center'}}>
-                        <View style={{flex:1}}>
-                            <CheckBox checked={this.props.followdice} onPress={() => this.onFollowDiceChanged(!this.props.followdice)} />
-                        </View>
-                        <View style={{flex:5}}>
-                            <Text style={{fontSize: Style.Font.medium()}}>Follow Dice</Text>                                
-                        </View>
-                    </View>                            
-                </View>                        
+                    <View style={{flex:1, flexDirection:'row', alignItems:'center'}}>
+                        <CheckBox label={'Enabled'} selected={this.props.enabled} onSelected={() => this.onEnabledChanged(!this.props.enabled)} />
+                    </View>
+                    <View style={{flex:2, flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+                        <SpinNumeric value={(this.props.number||1).toString()} min={1} max={10} onChanged={this.onNumberChanged} />
+                        {/*
+                        <Spinner max={10} min={1} default={this.props.number} onNumChange={this.onNumberChanged} />
+                        */}          
+                    </View>
+                    <View style={{flex:1, flexDirection:'row', alignItems:'center'}}>
+                        <CheckBox label={'Follow Dice'} selected={this.props.followdice} onSelected={() => this.onFollowDiceChanged(!this.props.followdice)} />
+                    </View>
+                </View>
             </View>
         );
     }

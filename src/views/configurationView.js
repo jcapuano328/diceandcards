@@ -3,6 +3,7 @@ import { View, ScrollView } from 'react-native';
 import Style from '../services/style';
 import ConfigurationDiceView from './configurationDiceView';
 import ConfigurationSpinView from './configurationSpinView';
+import ConfigurationOddsView from './configurationOddsView';
 import ConfigurationCardsView from './configurationCardsView';
 
 var ConfigurationView = React.createClass({
@@ -14,7 +15,10 @@ var ConfigurationView = React.createClass({
                 </View>
                 <View style={{flex:1}}>
                     <ConfigurationSpinView />
-                </View>                
+                </View>     
+                <View style={{flex:1}}>
+                    <ConfigurationOddsView />
+                </View>                           
                 <View style={{flex:3}}>
                     <ConfigurationCardsView />
                 </View>                

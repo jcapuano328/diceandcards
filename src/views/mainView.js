@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Style from '../services/style';
 import DiceView from './diceView';
+import OddsView from './oddsView';
 import SpinnerView from './spinnerView';
 import CardsView from './cardsView';
 
@@ -11,6 +12,7 @@ var MainView = React.createClass({
         return (
             <View style={{flex: 1, marginTop: Style.Scaling.scale(44)}}>
                 {this.renderDice()}
+                {this.renderOdds()}
                 {this.renderSpin()}
                 {this.renderCards()}
             </View>
@@ -22,6 +24,16 @@ var MainView = React.createClass({
                 <View style={{flex:4}}>
                     <DiceView />
                 </View>
+            );            
+        }
+        return null;
+    },
+    renderOdds() {
+        if (this.props.odds && this.props.odds.enabled) {
+            return (                                                    
+                <View style={{flex:1}}>
+                    <OddsView />
+                </View>                
             );            
         }
         return null;
@@ -50,6 +62,7 @@ var MainView = React.createClass({
 
 const mapStateToProps = (state) => ({
     dice: state.dice,
+    odds: state.odds,
     spin: state.spin,
     cards: state.cards
 });

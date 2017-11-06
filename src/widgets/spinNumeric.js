@@ -66,7 +66,7 @@ var SpinNumeric = React.createClass({
                     : null
                 }
                 <View style={{flex: 5}}>
-                    <SpinButton scale={0.5} direction={'prev'} onPress={this.onPrev} />
+                    <SpinButton scale={1} image={'button-minus'} direction={'prev'} onPress={this.onPrev} />
                 </View>
                 <View style={{flex: 15, alignItems: 'center'}}>
                     <TextInput
@@ -84,7 +84,7 @@ var SpinNumeric = React.createClass({
                     />
                 </View>
                 <View style={{flex: 5}}>
-                    <SpinButton scale={0.5} direction={'next'} onPress={this.onNext} />
+                    <SpinButton scale={1} image={'button-plus'} direction={'next'} onPress={this.onNext} />
                 </View>
             </View>
         );

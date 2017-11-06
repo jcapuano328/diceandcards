@@ -83,6 +83,10 @@ module.exports = {
 	"chevron-right-dark": require('./chevron-right-dark.png'),	
 	"chevron-left-light": require('./chevron-left-light.png'),
 	"chevron-right-light": require('./chevron-right-light.png'),
+	
+	"button-plus": require('./button-plus.png'),
+	"button-minus": require('./button-minus.png'),
+
 	"add": require('./add.png'),
 	"remove": require('./remove.png'),
 	"on": require('./abc_btn_radio_to_on_mtrl_015.png'),

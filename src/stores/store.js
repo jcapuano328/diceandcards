@@ -22,6 +22,11 @@ import rootReducer from '../reducers';
                 {sides: int, diecolor: string, dotcolor: string, value: int}
             ]
         },
+        odds: {
+            enabled: bool,
+            attack: float,
+            defend: float
+        }
         spin: {
             enabled: bool,
             number: int,

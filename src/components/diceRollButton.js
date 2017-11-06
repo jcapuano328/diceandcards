@@ -25,8 +25,12 @@ var RollButton = React.createClass({
         }
     },
     render() {
-        let width = (this.state.width*0.9) || 32;
-        let height = (this.state.height*0.9) || 32;
+        let dim = Math.max(Math.min(this.state.width,this.state.height), 32);
+        let width = (dim*0.9) || 32;
+        let height = (dim*0.9) || 32;
+        
+        //let width = (this.state.width*0.9) || 32;
+        //let height = (this.state.height*0.9) || 32;
 
         let paddingLeft = this.props.direction == 'vertical' ? 45 : 15;
         let paddingRight = this.props.direction == 'vertical' ? 45 : 15;
