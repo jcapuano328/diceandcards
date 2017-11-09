@@ -34,17 +34,16 @@ var ConfigurationOddsView = React.createClass({
                 ? v + ':1'
                 : '1:' + v;
         }
-        
         return (
             <View style={{flex:1, flexDirection:'row', backgroundColor: 'gainsboro',paddingLeft:3, paddingRight:3}}>
                 <View style={{flex:1,flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-                    <SpinNumeric value={this.props.attack.toString()} min={0} onChanged={this.onAttackChanged} />                    
+                    <SpinNumeric value={(this.props.attack == null ? 1 : this.props.attack).toString()} min={0} onChanged={this.onAttackChanged} />                    
                 </View>
                 <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
                     <Text style={{fontSize:Style.Font.large(), fontWeight:'bold', textAlign:'center'}}>{odds}</Text>
                 </View>                    
                 <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center'}}>                    
-                    <SpinNumeric value={this.props.defend.toString()} min={0} onChanged={this.onDefendChanged} />
+                    <SpinNumeric value={(this.props.defend == null ? 1 : this.props.defend).toString()} min={0} onChanged={this.onDefendChanged} />
                 </View>
             </View>
         );
