@@ -14,8 +14,8 @@ var ConfigurationOddsView = React.createClass({
         this.props.setDefend(+v);        
     },    
     render() {        
-        let attack = this.props.attack;
-        let defend = this.props.defend;
+        let attack = this.props.attack == null || isNaN(this.props.attack) ? 1 : this.props.attack;
+        let defend = this.props.defend == null || isNaN(this.props.defend) ? 1 : this.props.defend;        
         let odds = '';
         if (attack > 0 && defend > 0) {
             let ratio = attack >= defend ? attack/defend : defend/attack;
@@ -34,16 +34,17 @@ var ConfigurationOddsView = React.createClass({
                 ? v + ':1'
                 : '1:' + v;
         }
+
         return (
             <View style={{flex:1, flexDirection:'row', backgroundColor: 'gainsboro',paddingLeft:3, paddingRight:3}}>
                 <View style={{flex:1,flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-                    <SpinNumeric value={(this.props.attack == null ? 1 : this.props.attack).toString()} min={0} onChanged={this.onAttackChanged} />                    
+                    <SpinNumeric value={attack.toString()} min={0} onChanged={this.onAttackChanged} />                    
                 </View>
                 <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
                     <Text style={{fontSize:Style.Font.large(), fontWeight:'bold', textAlign:'center'}}>{odds}</Text>
                 </View>                    
                 <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center'}}>                    
-                    <SpinNumeric value={(this.props.defend == null ? 1 : this.props.defend).toString()} min={0} onChanged={this.onDefendChanged} />
+                    <SpinNumeric value={defend.toString()} min={0} onChanged={this.onDefendChanged} />
                 </View>
             </View>
         );

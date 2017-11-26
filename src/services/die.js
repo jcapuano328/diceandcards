@@ -1,12 +1,10 @@
+import {randomRange,randomOneOf} from './random';
+
 function Die(low, high, diecolor, dotcolor) {
 	var self = this;
     var value = low;
     diecolor = diecolor || 'white';
 	dotcolor = dotcolor || 'black'
-
-	function randomBetween(low, high) {
-		return Math.floor(Math.random()*(high-low+1)) + low;
-	}
 
     self.color = function() {
     	return {
@@ -41,7 +39,8 @@ function Die(low, high, diecolor, dotcolor) {
         }
     }
     self.roll = function() {
-		value = randomBetween(low, high);		
+		let values = randomRange(low,high,10);
+		value = randomOneOf(values);		
         return value;
     }
 }
