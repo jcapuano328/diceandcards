@@ -31,7 +31,7 @@ var CardDeckView = React.createClass({
             jokers: this.props.deck.jokers,
             color: this.props.deck.color,
             suits: this.props.deck.suits,
-            facecards: this.props.facecards
+            facecards: this.props.deck.facecards
         }), null);
     },
     onCardDraw() {
@@ -41,7 +41,7 @@ var CardDeckView = React.createClass({
             this.props.setDeckAndCard(this.props.index, deck, card);
         }
     },
-    render() {		
+    render() {        
 		// card width is 74% of width; card height is 126% of card width        
         let cwidth = (this.state.width||96) * 0.74;
         let cheight = cwidth * 1.26;
