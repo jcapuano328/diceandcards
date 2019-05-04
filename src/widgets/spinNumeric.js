@@ -13,6 +13,13 @@ let format = (v, ib) => {
 }
 
 var SpinNumeric = React.createClass({
+    firstValue() {
+        let values = this.props.values || [0];        
+        if (!values || values.length < 1) {
+            values = [0];
+        }
+        return values[0];
+    },
     nextValue(value, neg) {
         let values = this.props.values;
         if (!values || values.length < 1) {
@@ -49,6 +56,14 @@ var SpinNumeric = React.createClass({
             console.error(err);
         }
     },
+    onReset() {
+        try {
+            let v = this.firstValue();
+            this.props.onChanged && this.props.onChanged(v.toString());
+        } catch(err) {
+            console.error(err);
+        }
+    },    
     onChanged(e) {
         try {
             this.props.onChanged && this.props.onChanged(e);
@@ -86,6 +101,12 @@ var SpinNumeric = React.createClass({
                 <View style={{flex: 5}}>
                     <SpinButton scale={1} image={'button-plus'} direction={'next'} onPress={this.onNext} />
                 </View>
+                {this.props.reset ? 
+                <View style={{flex: 5, marginLeft:3}}>
+                    <SpinButton scale={1} image={'reset'} direction={'next'} onPress={this.onReset} />
+                </View>
+                : null
+                }
             </View>
         );
     }

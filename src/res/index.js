@@ -3,6 +3,7 @@ module.exports = {
 	"info": require('./info-dark.png'),	
 	"back": require('./chevron-left-dark.png'),
 	"config": require('./gear-dark.png'),
+	"reset": require('./reset.png'),
 	
 	"acediamonds": require('./101.png'),
 	"duecediamonds": require('./102.png'),	
