@@ -79,6 +79,12 @@ module.exports = {
 	"dicetable": require('./table4.jpg'),
 	"diceroll": require('./dicecup.png'),
 
+	"support-die-blank": require('support-die-blank./.png'),
+	"support-die-air": require('./support-die-air.png'),
+	"support-die-armor": require('support-die-armor./.png'),
+	"support-die-cas": require('./support-die-cas.png'),
+	"support-die-strike": require('./support-die-strike.png'),
+
 
 	"chevron-left-dark": require('./chevron-left-dark.png'),
 	"chevron-right-dark": require('./chevron-right-dark.png'),	
