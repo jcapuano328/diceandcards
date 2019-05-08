@@ -59,7 +59,7 @@ var ConfigurationDieView = React.createClass({
                         selectedValue={this.props.diecolor}
                         onValueChange={this.onDieColorChanged}
                     >
-                        {Dice.colors.map((c,i) => <Picker.Item key={i} style={{fontSize:Style.Font.smallmedium()}} label={c} value={c} />)}
+                        {Dice.diecolors.map((c,i) => <Picker.Item key={i} style={{fontSize:Style.Font.smallmedium()}} label={c} value={c} />)}
                     </Picker>
                 </View>        
                 <View style={{flex:2,justifyContent:'center'}}>
@@ -70,7 +70,7 @@ var ConfigurationDieView = React.createClass({
                         selectedValue={this.props.dotcolor}
                         onValueChange={this.onDotColorChanged}
                     >
-                        {Dice.colors.map((c,i) => <Picker.Item key={i} style={{fontSize:Style.Font.smallmedium()}} label={c} value={c} />)}
+                        {Dice.dotcolors.map((c,i) => <Picker.Item key={i} style={{fontSize:Style.Font.smallmedium()}} label={c} value={c} />)}
                     </Picker>
                 </View>        
                 <View style={{flex:1}}>

@@ -69,6 +69,8 @@ function Dice(opts) {
     }
 }
 
+const colors = ['red', 'white', 'black', 'yellow', 'blue', 'green', 'purple', 'gray', 'olive', 'sienna'];
+
 module.exports = {
 	Die: Die,
 	Dice: Dice,
@@ -80,5 +82,10 @@ module.exports = {
 		if (sides == 10) {return 9;}
 		return sides;
 	},
-	colors: ['red', 'white', 'black', 'yellow', 'blue', 'green', 'purple', 'gray', 'olive', 'sienna']
+	diecolors: colors,
+	dotcolors: [
+		...colors,
+		'support',
+		'space'
+	]
 }

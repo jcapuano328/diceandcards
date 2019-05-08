@@ -1,6 +1,6 @@
 {
   "name": "diceandcards",
-  "version": "1.0.25",
+  "version": "1.0.27",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -13,8 +13,8 @@
     "install-rel": "adb -d install -r android/app/build/outputs/apk/diceandcards-release-1.0.apk",
     "emulate-s3": "%ANDROID_HOME%/tools/emulator.exe -avd Galaxy_SIII",
     "emulate-nexus7": "%ANDROID_HOME%/tools/emulator.exe -avd Nexus_7",    
-    "push": "code-push release-react DiceAndCards android --description 1.0.25",
-    "promote": "code-push promote DiceAndCards Staging Production --description 1.0.25 --mandatory",
+    "push": "code-push release-react DiceAndCards android --description 1.0.27",
+    "promote": "code-push promote DiceAndCards Staging Production --description 1.0.27 --mandatory",
     "bridge": "adb reverse tcp:8081 tcp:8081",
     "menu": "adb shell input keyevent 82",
     "logs": "adb logcat *:S ReactNative:V ReactNativeJS:V",
