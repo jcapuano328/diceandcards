@@ -43,6 +43,9 @@ import rootReducer from '../reducers';
                     card: string                    
                 }
             ]
+        },
+        calculator: {
+            mode: string
         }
     }
 */

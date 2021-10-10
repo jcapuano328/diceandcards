@@ -5,6 +5,7 @@ import ConfigurationDiceView from './configurationDiceView';
 import ConfigurationSpinView from './configurationSpinView';
 import ConfigurationOddsView from './configurationOddsView';
 import ConfigurationCardsView from './configurationCardsView';
+import ConfigurationCalculatorView from './configurationCalculatorView';
 
 var ConfigurationView = React.createClass({
     render() {
@@ -19,7 +20,10 @@ var ConfigurationView = React.createClass({
                 <View style={{flex:1}}>
                     <ConfigurationOddsView />
                 </View>                           
-                <View style={{flex:3}}>
+                <View style={{flex:1}}>
+                    <ConfigurationCalculatorView />
+                </View>                
+                <View style={{flex:2}}>
                     <ConfigurationCardsView />
                 </View>                
             </View>

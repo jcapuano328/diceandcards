@@ -101,6 +101,16 @@ module.exports = {
 	"calc-7": require('./calc-7.png'),
 	"calc-8": require('./calc-8.png'),
 	"calc-9": require('./calc-9.png'),
+	
+	"calc-size": require('./calc-size.png'),
+	"calc-loss": require('./calc-loss.png'),
+	"calc-strength": require('./calc-strength.png'),
+
+	"calc-third": require('./calc-third.png'),
+	"calc-half": require('./calc-half.png'),
+	"calc-three-halves": require('./calc-three-halves.png'),
+	"calc-twice": require('./calc-twice.png'),
+
 
 	"support-die-blank": require('./support-die-blank.png'),
 	"support-die-air": require('./support-die-air.png'),
